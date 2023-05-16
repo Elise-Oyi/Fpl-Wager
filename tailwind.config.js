@@ -10,11 +10,16 @@ module.exports = {
       },
       colors: {
         'customBrand': {
+          100 : '#0a192f',
           200 : '#00141e',
           300 : '#0a192f',
           400 : '#010a0f',
           500 : '#0a192f',
+        },
+        customGreen: {
+          200: '#008357',
         }
+
       },
       backgroundColor: {
         'main-bg': '#FAFBFB',

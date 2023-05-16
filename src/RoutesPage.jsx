@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import Fixtures from "./pages/Fixtures";
 import Notification from "./pages/Notification";
 import Entry from "./pages/Entry";
+import Wager from "./pages/Wager";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -57,6 +58,7 @@ export default function RoutesPage() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/fixtures" element={<Fixtures />} />
             <Route path="/notifications" element={<Notification />} />
+            <Route path="/wager" element={<Wager />} />
             <Route path="/entry" element={<Entry />} />
           </Routes>
         </div>
