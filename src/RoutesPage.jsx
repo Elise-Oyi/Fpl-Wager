@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   BrowserRouter,
+  useLocation,
 } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Wagers from "./pages/Wagers";
@@ -10,14 +11,18 @@ import Token from "./pages/Token";
 import Profile from "./pages/Profile";
 import Fixtures from "./pages/Fixtures";
 import Notification from "./pages/Notification";
+import Entry from "./pages/Entry";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { NavContext } from "./contexts/NavContext";
 import { useContext } from "react";
+import { AnimatePresence } from 'framer-motion';
+
 
 export default function RoutesPage() {
   const { activeMenu } = useContext(NavContext);
+  const location = useLocation();
 
   return (
     <BrowserRouter>
@@ -43,14 +48,17 @@ export default function RoutesPage() {
         </div>
 
         <div>
-          <Routes>
+        <AnimatePresence wait>
+        <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Homepage />} />
             <Route path="/wagers" element={<Wagers />} />
             <Route path="/token" element={<Token />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/fixtures" element={<Fixtures />} />
             <Route path="/notifications" element={<Notification />} />
+            <Route path="/entry" element={<Entry />} />
           </Routes>
+          </AnimatePresence>
         </div>
       </div>
       </div>
