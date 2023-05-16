@@ -68,8 +68,8 @@ const Entry = () => {
                             Lizza Bans
                         </span>
 
-                        <span className='text-white text-md md:text-2xl py-2 md:py-3 px-4 md:px-6 text-semibold'>
-                            FPL Points
+                        <span className='text-white text-md md:text-3xl py-2 md:py-3 px-4 md:px-6 text-bold'>
+                            345
                         </span>
 
 
