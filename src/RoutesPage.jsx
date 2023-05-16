@@ -1,10 +1,12 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-  useLocation,
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Routes,
+//   Route,
+//   BrowserRouter,
+//   useLocation,
+// } from "react-router-dom";
+import {  Routes, Route, useLocation } from "react-router-dom";
+
 import Homepage from "./pages/Homepage";
 import Wagers from "./pages/Wagers";
 import Token from "./pages/Token";
@@ -25,7 +27,7 @@ export default function RoutesPage() {
   const location = useLocation();
 
   return (
-    <BrowserRouter>
+    <AnimatePresence wait>
     <div className="flex relative">
       {activeMenu ? (
         <div className="w-72 fixed sidebar bg-white ">
@@ -48,7 +50,6 @@ export default function RoutesPage() {
         </div>
 
         <div>
-        <AnimatePresence wait>
         <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Homepage />} />
             <Route path="/wagers" element={<Wagers />} />
@@ -58,10 +59,9 @@ export default function RoutesPage() {
             <Route path="/notifications" element={<Notification />} />
             <Route path="/entry" element={<Entry />} />
           </Routes>
-          </AnimatePresence>
         </div>
       </div>
       </div>
-    </BrowserRouter>
+     </AnimatePresence>
   );
 }
