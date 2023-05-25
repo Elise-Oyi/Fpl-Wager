@@ -6,7 +6,7 @@ import axios from 'axios'
 export default function PayToken() {
 
   //---CONTEXTS
-  const {tokens:token,userId, setTokens} = useContext(UserContext)
+  const {tokens:token,userId, setTokens, fplId} = useContext(UserContext)
 
   //---entry token
   const [entryToken, setEntryToken] = useState(0)
@@ -27,7 +27,8 @@ export default function PayToken() {
   //--join wager data
   const joinWagerData = {
     userId: userId,
-    wagerId: wagerId
+    wagerId: wagerId,
+    fplId: fplId
   }
 
   //--update tokens data
