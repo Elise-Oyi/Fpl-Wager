@@ -9,6 +9,7 @@ export default function Homepage() {
   return (
     <>
       <div className="mt-12">
+        <div className="bg-red-900 w-full h-10 " style={{visibility: 'hidden'}}></div>
         {/* ----Hero Section---- */}
         <div className="flex flex-wrap lg:flex-nowrap justify-center">
           <div className="bg-sky-500  h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3  bg-no-repeat bg-cover bg-center">
