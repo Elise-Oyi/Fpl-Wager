@@ -114,11 +114,12 @@ const handleCloseSideBar = ()=>{
       ),
     },
   ];
+
   const activeLink =
-    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-indigo-500 text-xl font-extrabold";
+    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-xl font-extrabold";
 
   const normalLink =
-    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 hover:bg-light-gray "
+    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-white hover:bg-light-gray hover:text-indigo-900 "
 
     
   return (
@@ -141,7 +142,7 @@ const handleCloseSideBar = ()=>{
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-8 h-8  "
+                        className="w-8 h-8 text-white "
                       >
                         <path
                           strokeLinecap="round"

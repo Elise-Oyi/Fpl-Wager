@@ -6,12 +6,12 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import TokenComponent from './TokenComponent';
 import { Link } from 'react-router-dom';
 import Notification from '../pages/Notification';
-import Profile from '../pages/Profile';
+import Profile from './Profile';
 
 const NavButton = ({title,customFunc,icon,color,dotColor}) => (
   // <Tooltip content={title} placement="BottomCenter">
     <button type='button' onClick={customFunc} style={{color}}
-     className='relative text-xl rounded-full p-3 hover:bg-light-gray'
+     className='relative text-xl rounded-full p-3 hover:bg-customBrand-300 hover:text-customBrand-300'
     >
       {/* <span style={{background:dotColor}} className='absolute inline-flex rounded-full h-2 w-2 right-2 top-2'> */}
         {icon}
@@ -24,7 +24,7 @@ const NavButton = ({title,customFunc,icon,color,dotColor}) => (
 export default function Navbar() {
   const {activeMenu,setActiveMenu,isClicked,handleClick,screenSize,setScreenSize} = useContext(NavContext)
   
-  const tokenStyle = 'text-blue-700 font-bold'
+  const tokenStyle = 'text-customGreen-200 font-bold'
 
   useEffect(()=>{
     // ---a function to handle screen width/size
@@ -50,11 +50,11 @@ export default function Navbar() {
     <div className='flex justify-between p-2 md:mx-6 relative md:ml-6'>
 
       {/* ----NavMenu---- */}
-      <NavButton title='Menu' customFunc={()=>setActiveMenu((prevActiveMenu)=>!prevActiveMenu)} color="blue" icon={<AiOutlineMenu/>}/>
+      <NavButton title='Menu' customFunc={()=>setActiveMenu((prevActiveMenu)=>!prevActiveMenu)} color="white" icon={<AiOutlineMenu/>}/>
 
       {/* ----notification,token,profile section--- */}
       <div className="flex">
-        <NavButton title='Notifications' customFunc={()=>{setActiveMenu((prevActiveMenu)=>!prevActiveMenu); handleClick('notification')}} color="blue" icon={<RiNotification3Line/>}/>
+        <NavButton title='Notifications' customFunc={()=>{setActiveMenu((prevActiveMenu)=>!prevActiveMenu); handleClick('notification')}} color="white" icon={<RiNotification3Line/>}/>
 
         <Link to="/token">
           <TokenComponent tokenStyle={tokenStyle}/>                       
@@ -62,6 +62,7 @@ export default function Navbar() {
 
         {/* -----profile section----- */}
         <div className=" pr-4">
+          
           <Profile/>
         </div>
 

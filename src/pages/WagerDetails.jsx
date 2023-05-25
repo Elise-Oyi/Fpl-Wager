@@ -52,8 +52,6 @@ const WagerDetails = () => {
       </div>)
     } 
 
-
-    
   
   
   return (
