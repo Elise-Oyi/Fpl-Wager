@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../contexts/UserContext'
+import axios from 'axios'
 
 
 const Wager = () => {
+  
+
+
+
   return (
     <>
         <motion.div

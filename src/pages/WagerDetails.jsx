@@ -11,7 +11,6 @@ const WagerDetails = () => {
 
   //---CONTEXT
   const {gameweek} = useContext(GamewekContext)
-  
   //getting the wagerId from URl
   const {wagerId} = useParams()
 
@@ -38,6 +37,7 @@ const WagerDetails = () => {
   // }
 
   const [wagerUsers,setWagerUsers] = useState()
+ // const [numberOfUsers, setNumberOfUsers] = useState(0)
 
 
   //--data for wager list
@@ -100,6 +100,7 @@ const WagerDetails = () => {
             }));
 
             setWagerUsers(updatedUsers);
+
           })
           .catch(error => {
             console.log(error);
@@ -114,7 +115,7 @@ const WagerDetails = () => {
 
     },[wagerId])
 
- console.log(wagerUsers)
+
     if(!wagerId){
       return (
       <div className="mt-12 bg-customBrand-400 h-screen overflow-y-scroll text-center mx-auto my-auto">
@@ -125,6 +126,32 @@ const WagerDetails = () => {
         <h3 className="text-white">You currently have no wager</h3>
       </div>)
     } 
+
+    //----displaying users in table from the api
+    if(!wagerUsers) return <h2>No users in the table</h2>
+   let numberOfUsers = wagerUsers.length
+    const sortedWagerUsers = wagerUsers.sort((a, b) => b.fplPoint - a.fplPoint);
+
+
+    const tableUI = sortedWagerUsers.map((user,index)=>{
+      return(
+        <tbody key={index}>
+        <tr className="border-b bg-gray-800 border-gray-700">
+        <td className="px-4 py-4 md:px-2 md:py-1">{index + 1}</td>
+          <th
+            scope="row"
+            className="px-3 py-4 md:px-2 md:py-1 font-medium   text-white"
+          >
+            {user.managerName}
+            <span className="block text-gray-400 font-light">{user.teamName}</span>
+          </th>
+          <td className="px-4 py-4 md:px-2 md:py-1">{user.fplPoint}</td>
+        </tr>
+    
+      </tbody>
+      )
+    })
+
 
 
   return (
@@ -157,7 +184,7 @@ const WagerDetails = () => {
           <div className="bg-gray-700 p-3 shadow-md m-4 rounded-sm">
             <h4 className="text-white text-sm">Pool Token</h4>
             <div className="text-green-400 text-sm font-semibold flex gap-1 items-center justify-center">
-                4
+                {(numberOfUsers*wagerDetails.entryToken)-0.1*(numberOfUsers*wagerDetails.entryToken)}
               </div>
           </div>
         </div>
@@ -173,7 +200,7 @@ const WagerDetails = () => {
           )}
 
           {/* ------if wager is started-------- */}
-         {wagerDetails.isStarted && !wagerDetails.isCompleted && ( <div className=" p-2 w-full">
+         { !wagerDetails.isCompleted && ( <div className=" p-2 w-full">
             
               <table className="w-full text-sm text-left text-gray-400">
                 <thead className="text-xs uppercase bg-gray-700 text-gray-400">
@@ -189,8 +216,8 @@ const WagerDetails = () => {
                     </th>
                   </tr>
                 </thead>
-
-                <tbody>
+                  {tableUI}
+                {/* <tbody>
                   <tr className="border-b bg-gray-800 border-gray-700">
                   <td className="px-4 py-4 md:px-2 md:py-1">1</td>
                     <th
@@ -202,19 +229,8 @@ const WagerDetails = () => {
                     </th>
                     <td className="px-4 py-4 md:px-2 md:py-1">55</td>
                   </tr>
-                  
-                  <tr className="bg-gray-800 border-gray-700">
-                  <td className="px-4 py-4 md:px-2 md:py-1">2</td>
-                    <th
-                      scope="row"
-                      className="px-3 py-4 md:px-2 md:py-1 font-medium   text-white"
-                    >
-                      Microsoft Surface Pro
-                      <span className="block text-gray-400 font-light">team name</span>
-                    </th>
-                    <td className="px-4 py-4 md:px-2 md:py-1">40</td>
-                  </tr>
-                </tbody>
+              
+                </tbody> */}
               </table>
             
           </div>)}
