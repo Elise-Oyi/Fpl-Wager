@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faMoneyBill, faEye } from "@fortawesome/free-solid-svg-icons";
 import banner from "../data/hero-img-2.avif";
 import { Avatar, Dropdown } from "flowbite-react";
 import CreateWager from "./CreateWager";
+import WagerLists from "../components/WagerLists";
+import { UserContext } from "../contexts/UserContext";
+import { FplContext } from "../contexts/FplContext";
+import { getCookie } from "../util/util";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -17,7 +21,9 @@ const ColoredLine = ({ color }) => (
   />
 );
 
-const Entry = () => {
+const Homepage = () => {
+
+  const {FplPoints,ManagerName,TeamName} = useContext(FplContext)
   return (
     <>
       <motion.div
@@ -49,7 +55,7 @@ const Entry = () => {
                 <div className="flex flex-col md:p-2 items-center mx-auto">
                   <div className="flex justify-between items-center mx-auto p-2 w-full ">
                     <span className="text-white text-md md:text-2xl py-2 md:py-3 px-4 md:px-6">
-                      Lizza Bans
+                      {ManagerName}
                     </span>
 
                     <span className="text-white text-md md:text-2xl py-2 md:py-3 px-4 md:px-6 text-semibold">
@@ -58,7 +64,7 @@ const Entry = () => {
                   </div>
 
                   <div className="flex justify-between items-center mx-auto p-2 w-full ">
-                    <span className="text-white text-md md:text-2xl py-2 md:py-3 px-4 md:px-8">
+                    <span className="text-gray-400 text-md md:text-2xl py-2 md:py-3 px-4 md:px-8">
                       <FontAwesomeIcon
                         className="text-white"
                         icon={faMoneyBill}
@@ -67,7 +73,7 @@ const Entry = () => {
                     </span>
 
                     <span className="text-white text-md md:text-4xl py-2 md:py-3 px-4 md:px-6 text-extrabold">
-                      345
+                      {FplPoints}
                     </span>
                   </div>
                 </div>
@@ -79,6 +85,7 @@ const Entry = () => {
 
               {/* --------Wagers-------------- */}
               <div className=" rounded-2xl bg-customGreen-200 flex flex-col text-center mx-auto p-2 ">
+                
                 <div className="flex">
                     <div className="text-2xl md:text-4xl text-white text-extrabold flex justify-start p-4">
                     Wagers
@@ -89,8 +96,9 @@ const Entry = () => {
                     </Link>
                     </div>
                 </div>
-               
-                <div className="flex justify-between items-center mx-auto p-2 w-full">
+
+                 <WagerLists/>
+                {/* <div className="flex justify-between items-center mx-auto p-2 w-full">
                   <span className="text-white text-md md:text-2xl py-2 md:py-3 px-4 md:px-6">
                     Wager 1
                   </span>
@@ -136,8 +144,8 @@ const Entry = () => {
                       />
                     </span>
                   </Link>
-                </div>
-              </div>
+                </div>*/}
+              </div> 
 
               {/* -----floating button-------- */}
               <div className="fixed pr-2 z-20 right-8 bottom-12">
@@ -191,4 +199,4 @@ const Entry = () => {
   );
 };
 
-export default Entry;
+export default Homepage;

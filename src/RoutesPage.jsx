@@ -1,10 +1,4 @@
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-//   BrowserRouter,
-//   useLocation,
-// } from "react-router-dom";
+
 import {  Routes, Route, useLocation } from "react-router-dom";
 
 import Homepage from "./pages/Homepage";
@@ -27,10 +21,15 @@ import CreateWager from "./pages/CreateWager";
 import JoinWager from "./pages/JoinWager";
 import PayToken from "./pages/PayToken";
 import NotFound from "./pages/NotFound";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import BuyToken from "./pages/BuyToken";
+import WithdrawToken from "./pages/WithdrawToken";
+import Wager from "./pages/Wager";
 
 
 export default function RoutesPage() {
   const { activeMenu } = useContext(NavContext);
+  
   const location = useLocation();
 
   return (
@@ -44,7 +43,7 @@ export default function RoutesPage() {
         // <div className="w-72 fixed sidebar bg-customBrand-300 ">
         //   <Sidebar />
         // </div>
-        location.pathname !== "/login" && location.pathname !== "/register" && (
+        location.pathname !== "/login" && location.pathname !== "/register"  && location.pathname !== "*"  && (
           <div className="w-72 fixed sidebar bg-customBrand-300  ">
            <Sidebar />
           </div>)
@@ -67,7 +66,7 @@ export default function RoutesPage() {
             {/* <div className="fixed md:static bg-customBrand-300 navbar w-full ">
               <Navbar />
             </div> */}
-             {location.pathname !== "/login" && location.pathname !== "/register" && (
+             {location.pathname !== "/login" && location.pathname !== "/register"  && location.pathname !== "/*" && (
             <div className="fixed md:static bg-customBrand-300 navbar w-full ">
               <Navbar />
             </div>)}
@@ -76,6 +75,8 @@ export default function RoutesPage() {
           
         <Routes location={location} key={location.pathname}>
        
+        <Route  element={<ProtectedRoutes/>}>
+
             <Route path="/" element={<Homepage />} />
             <Route path="/wagers" element={<Wagers />} />
             <Route path="/token" element={<Token />} />
@@ -87,9 +88,17 @@ export default function RoutesPage() {
             <Route path="/create-wager" element={<CreateWager />} />
             <Route path="/join-wager" element={<JoinWager />} />
             <Route path="/pay-token/:wagerId" element={<PayToken />} />
+           <Route path="/buy-token" element={<BuyToken />} />
+            <Route path="/withdraw-token" element={<WithdrawToken />} />
+       
+        </Route>
+
+        {/* <Route path="/buy-token" element={<BuyToken />} /> */}
+
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="*" element={<NotFound />} />
+                {/* <Route path="/wagerrr" element={<Wager />} /> */}
+            <Route path="/*" element={<NotFound />} />
 
 
           </Routes>

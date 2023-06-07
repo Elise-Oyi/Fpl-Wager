@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import PersonsContext from "../contexts/PersonsContext";
 
 
 export default function CreateWager() {
   const Currentgameweek = 39;
   const availableGameweek = Currentgameweek + 1;
+
+const {userId} = PersonsContext()
 
   //--navigate 
   const navigate = useNavigate()
@@ -26,7 +29,7 @@ export default function CreateWager() {
       gameweek : +gameweek,
       tokenDistribution:'top 1',
       winType: 'weekly',
-      createdBy: 4,
+      createdBy: +userId,
       isStarted: false,
       isCompleted: false
     }

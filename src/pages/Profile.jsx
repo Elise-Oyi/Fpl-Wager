@@ -30,7 +30,7 @@ export default function Profile() {
             </Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item>
-              Sign out
+              Logout
             </Dropdown.Item>
           </Dropdown>
     </div>

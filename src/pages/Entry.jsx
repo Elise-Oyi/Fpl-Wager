@@ -6,6 +6,7 @@ import { faTrash, faMoneyBill, faEye } from "@fortawesome/free-solid-svg-icons";
 import banner from "../data/hero-img-2.avif";
 import { Avatar, Dropdown } from "flowbite-react";
 import CreateWager from "./CreateWager";
+import WagerLists from "../components/WagerLists";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -79,7 +80,8 @@ const Entry = () => {
               ></div>
 
               {/* --------Wagers-------------- */}
-              <div className=" rounded-2xl bg-customGreen-200 flex flex-col text-center mx-auto p-2 ">
+              <WagerLists/>
+              {/* <div className=" rounded-2xl bg-customGreen-200 flex flex-col text-center mx-auto p-2 ">
                 <div className="flex">
                     <div className="text-2xl md:text-4xl text-white text-extrabold flex justify-start p-4">
                     Wagers
@@ -138,7 +140,7 @@ const Entry = () => {
                     </span>
                   </Link>
                 </div>
-              </div>
+              </div> */}
 
               {/* -----floating button-------- */}
               <div className="fixed pr-2 z-20 right-8 bottom-12">

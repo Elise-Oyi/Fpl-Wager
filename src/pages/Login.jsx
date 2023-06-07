@@ -3,15 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
-import { UserContext } from "../contexts/UserContext";
+// import { UserContext } from "../contexts/UserContext";
 import { FplContext } from "../contexts/FplContext";
 import { GamewekContext } from "../contexts/GameweekContext";
 import { NavContext } from "../contexts/NavContext";
+import PersonsContext from "../contexts/PersonsContext";
 
 export default function Login() {
 
+
+
   //---CONTEXTS
-  const {setUserId,setFplId,setTokens,userId} = useContext(UserContext)
+  const {setUserId,setFplId,setTokens} = PersonsContext()
   const {setFplPoints,setManagerName,setTeamName} = useContext(FplContext)
   const {setGameweek,setIsFinished,setIsCurrent} = useContext(GamewekContext)
   const {activeMenu, setActiveMenu} = useContext(NavContext)
@@ -40,7 +43,6 @@ export default function Login() {
 
   useEffect(()=>{
     setActiveMenu(false)
-    console.log(activeMenu)
   },[])
 
   //---handle login function
@@ -49,10 +51,11 @@ export default function Login() {
     setLoginErrors(ValidateLogins({ emailOrFplId, password }));
 
     try {
+      // axios.defaults.withCredentials = true
+
       axios
         .post(url, data)
         .then((response) => {
-          console.log(response.data)
           const res = response.data
           if (res.id) {
             
@@ -60,13 +63,14 @@ export default function Login() {
             setUserId(res.id)
             setTokens(res.tokens)
             setFplId(res.fplId)
+            localStorage.setItem('sessionId', res.id);
             
             //--fpl api url
             const fplUrl = `https://fantasy.premierleague.com/api/entry/${res.fplId}/`;
+            const headers = {}
             //--geting user details from fpl api
               axios.get(fplUrl)
               .then((resp=>{
-                console.log(resp.data)
                 setFplPoints(resp.data.summary_overall_points)
                 setManagerName(resp.data.player_first_name + " " + resp.data.player_last_name)
                 setTeamName(resp.data.name)
@@ -86,7 +90,7 @@ export default function Login() {
                 theme: "light",
                 })
               
-                //navigate("/entry");
+                navigate("/");
           } 
         
         })
